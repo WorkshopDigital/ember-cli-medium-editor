@@ -3,8 +3,6 @@ import MediumBase from './medium-base';
 
 export default MediumBase.extend({
 
-
-	tagName: 'div',
-
+	tagName: 'textarea',
 
 });

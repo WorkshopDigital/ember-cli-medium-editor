@@ -1,8 +1,8 @@
+/*jshint node:true*/
 module.exports = {
-  normalizeEntityName: function() {
-  },
+  normalizeEntityName: function() {},
 
   afterInstall: function() {
-    return this.addBowerPackageToProject('medium-editor', '3.0.9');
+    return this.addBowerPackageToProject('medium-editor', '5.11.0');
   }
 };
