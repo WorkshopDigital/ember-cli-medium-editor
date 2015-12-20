@@ -16,6 +16,9 @@ export default Ember.Component.extend(
 	anchorFromOptions, {
 
 
+	editor: null,	
+
+
 	classNames: ['editable'],
 
 
@@ -30,17 +33,17 @@ export default Ember.Component.extend(
 			return this.sendAction('userTyping', true);
 		}
 	},
-	
+
 
   willDestroyElement() {
     return this.$().destroy();
   }, 	
 
 
-  didInsertElement: function() {
-  	var component = this;
+  _editorInit() {
+		var component = this;
 
-    new window.MediumEditor(component.$(), {
+    return new window.MediumEditor(component.$(), {
 	    activeButtonClass: component.get('activeButtonClass'),
 	    buttonLabels: component.get('buttonLabels'),
 	    contentWindow: component.get('contentWindow'),
@@ -109,5 +112,20 @@ export default Ember.Component.extend(
 			autoLink: component.get('autoLink'),
 			imageDragging: component.get('imageDragging')	    	    	    	    	    	    	        	
     });
+  },
+
+
+  didInsertElement: function() {
+  	var component, editor;
+
+  	editor    = this._editorInit();
+  	component = this;
+
+		editor.subscribe(
+			'editableInput', 
+			this.editableInput.bind(component)
+		);
+
+		return this.set('editor', editor);
   },		
 });

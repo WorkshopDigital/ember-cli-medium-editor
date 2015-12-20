@@ -4,7 +4,9 @@ import MediumBase from './medium-base';
 export default MediumBase.extend({
 
 
-	tagName: 'div',
-
+  editableInput(data, editable) {
+  	debugger;
+		return this.sendAction('data', editable.textContent);
+  }
 
 });
