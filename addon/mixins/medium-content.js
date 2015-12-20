@@ -1,38 +1,32 @@
 import Ember from 'ember';
-import coreOptions from '../mixins/core-options';
-import toolbarOptions from '../mixins/toolbar-options';
-import keyboardOptions from '../mixins/keyboard-options';
-import pasteOptions from '../mixins/paste-options';
-import placeholderOptions from '../mixins/placeholder-options';
-import anchorFromOptions from '../mixins/anchor-form-options';
+import coreOptions from './core-options';
+import toolbarOptions from './toolbar-options';
+import keyboardOptions from './keyboard-options';
+import pasteOptions from './paste-options';
+import placeholderOptions from './placeholder-options';
+import anchorFromOptions from './anchor-form-options';
 
+export default Ember.Mixin.create(
 
-export default Ember.Component.extend(
 	coreOptions,
+
 	toolbarOptions,
+
 	keyboardOptions,
+
 	pasteOptions,
+
 	placeholderOptions,
+	
 	anchorFromOptions, {
 
 
-	editor: null,	
+  editor:null,  
 
 
-	classNames: ['editable'],
-
-
-	focusOut() {
-		return this.sendAction('userTyping', false);
-	},
-
-
-	keyDown(event) {
-
-		if(!event.metaKey) {
-			return this.sendAction('userTyping', true);
-		}
-	},
+  editableInput(data, editable) {
+  	return this.set('value', editable.innerHTML);
+  },		
 
 
   willDestroyElement() {
@@ -42,6 +36,7 @@ export default Ember.Component.extend(
 
   _editorInit() {
 		var component = this;
+    var temp = component.$();
 
     return new window.MediumEditor(component.$(), {
 	    activeButtonClass: component.get('activeButtonClass'),
@@ -118,8 +113,8 @@ export default Ember.Component.extend(
   didInsertElement: function() {
   	var component, editor;
 
-  	editor    = this._editorInit();
   	component = this;
+  	editor    = component._editorInit();
 
 		editor.subscribe(
 			'editableInput', 
@@ -127,5 +122,5 @@ export default Ember.Component.extend(
 		);
 
 		return this.set('editor', editor);
-  },		
+  }		
 });

@@ -1,0 +1,1 @@
+export { default } from 'ember-cli-medium-editor/components/medium-content-textinput';

@@ -1,0 +1,28 @@
+@import "partials/settings";
+@import "partials/animations/image-loading";
+@import "partials/animations/pop-upwards";
+@import "partials/components/anchor-preview";
+@import "partials/components/file-dragging";
+@import "partials/components/placeholder";
+@import "partials/components/toolbar";
+@import "partials/components/toolbar-form";
+@import "partials/util/clearfix";
+
+// contenteditable rules
+[data-medium-editor-element] {
+    img {
+        max-width: 100%;
+    }
+
+    sub {
+        vertical-align: sub;
+    }
+
+    sup {
+        vertical-align: super;
+    }
+}
+
+.medium-editor-hidden {
+    display: none;
+}

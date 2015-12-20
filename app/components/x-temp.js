@@ -1,1 +1,0 @@
-export { default } from 'ember-cli-medium-editor/components/x-temp';
